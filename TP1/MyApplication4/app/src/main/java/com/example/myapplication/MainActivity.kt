@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Layout
 import android.widget.Button
@@ -10,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
+const val EXTRA_TEXT = "text_to_dosplay";
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +28,10 @@ class MainActivity : AppCompatActivity() {
 
         val premierButton: Button = findViewById(R.id.validateButton);
         val inputEditText: EditText = findViewById(R.id.premierInput);
-        val label: TextView = findViewById(R.id.premierLabel)
+        val label: TextView = findViewById(R.id.premierLabel);
         val mainLayout: ConstraintLayout = findViewById(R.id.main);
+
+        var buttonClicked: Boolean = false;
 
         premierButton.setOnClickListener {
             val inputText = inputEditText.getText();
@@ -38,6 +43,19 @@ class MainActivity : AppCompatActivity() {
             } else {
                 label.text = inputText;
             }
+
+            buttonClicked = true
+        }
+
+        val nextButton: Button = findViewById(R.id.next);
+
+        nextButton.setOnClickListener {
+            if (buttonClicked) {
+                val intent = Intent(this, MainActivity2::class.java);
+                intent.putExtra(EXTRA_TEXT, inputEditText.text.toString());
+                startActivity(intent);
+            }
+
         }
     }
 }

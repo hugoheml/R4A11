@@ -1,6 +1,9 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +18,24 @@ class MainActivity2 : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val intent = intent;
+
+        if (intent != null) {
+
+            val superTextView: TextView = findViewById(R.id.superTextView);
+            val newText = intent.getStringExtra(EXTRA_TEXT)
+
+            if (newText != null) {
+                superTextView.text = newText;
+            }
+
+            val previousButton: Button = findViewById(R.id.previousButton);
+            previousButton.setOnClickListener {
+                val intent = Intent(this, MainActivity::class.java);
+                startActivity(intent);
+            }
         }
     }
 }

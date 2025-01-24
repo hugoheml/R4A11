@@ -50,4 +50,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/premierInput" />
 
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="563dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
