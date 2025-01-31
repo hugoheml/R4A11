@@ -29,11 +29,11 @@ class MainActivity2 : ComponentActivity() {
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        val intent = intent;
+                        val intent = intent
 
                         if (intent != null) {
-                            val username = intent.getStringExtra(USERNAME);
-                            val birthYear = intent.getIntExtra(BIRTH_YEAR, 2000);
+                            val username = intent.getStringExtra(USERNAME)
+                            val birthYear = intent.getIntExtra(BIRTH_YEAR, 2000)
 
                             val age = AgeCalculator.calculateAge(birthYear)
 

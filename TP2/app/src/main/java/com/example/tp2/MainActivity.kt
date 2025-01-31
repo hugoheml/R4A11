@@ -33,8 +33,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tp2.ui.theme.TP2Theme
 
-const val USERNAME = "username";
-const val BIRTH_YEAR = "birthYear";
+const val USERNAME = "username"
+const val BIRTH_YEAR = "birthYear"
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
