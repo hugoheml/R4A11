@@ -37,7 +37,7 @@ class MainActivity2 : ComponentActivity() {
 
                             val age = AgeCalculator.calculateAge(birthYear)
 
-                            if (username != null) {
+                            if (!username.isNullOrEmpty()) {
                                 Text("Hello $username, vous avez $age ans")
                             }
                         }
