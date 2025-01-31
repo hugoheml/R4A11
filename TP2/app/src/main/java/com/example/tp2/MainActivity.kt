@@ -60,7 +60,7 @@ class MainActivity : ComponentActivity() {
                         Spacer(modifier = Modifier.height(4.dp))
                         Button(
                             onClick = {
-                                if (inputText != "") {
+                                if (inputText.isNotEmpty()) {
                                     val intent = Intent(this@MainActivity, MainActivity2::class.java)
                                     intent.putExtra(USERNAME, inputText)
                                     startActivity(intent)
