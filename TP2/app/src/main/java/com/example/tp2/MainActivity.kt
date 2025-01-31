@@ -1,6 +1,8 @@
 package com.example.tp2
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -28,6 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tp2.ui.theme.TP2Theme
 
+const val USERNAME = "";
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +44,9 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(innerPadding),
                         verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally,
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        var inputText by remember { mutableStateOf("Jean-François") }
+                        var inputText by remember { mutableStateOf("") }
 
                         TitleText(name = "Bienvenue")
                         Spacer(modifier = Modifier.height(16.dp))
@@ -55,7 +59,15 @@ class MainActivity : ComponentActivity() {
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Button(
-                            onClick = { },
+                            onClick = {
+                                if (inputText != "") {
+                                    val intent = Intent(this@MainActivity, MainActivity2::class.java)
+                                    intent.putExtra(USERNAME, inputText)
+                                    startActivity(intent)
+                                } else {
+                                    Toast.makeText(this@MainActivity, "Veuillez saisir un nom", Toast.LENGTH_SHORT).show()
+                                }
+                            },
                             content = {
                                 Text("Valider")
                             }
