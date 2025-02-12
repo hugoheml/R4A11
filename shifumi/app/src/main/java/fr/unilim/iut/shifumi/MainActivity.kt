@@ -54,6 +54,9 @@ fun App_Navigation() {
         composable("home") {
             HomePage(navController = navController)
         }
+        composable("game-page") {
+            GamePage()
+        }
     }
 }
 
@@ -70,7 +73,7 @@ fun HomePage(navController: NavController) {
         GameLogo()
         Spacer(modifier = Modifier.height(24.dp));
         Button(onClick = {
-            navController.navigate("form") },
+            navController.navigate("game-page") },
             colors = ButtonDefaults.buttonColors(
                 containerColor = colorResource(id = R.color.secondary),
             ),
@@ -78,6 +81,22 @@ fun HomePage(navController: NavController) {
         ) {
             Text(text = "Jouer")
         }
+    }
+}
+
+@Composable
+fun GamePage() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "LET'S PLAY",
+            style = MaterialTheme.typography.titleLarge
+        )
     }
 }
 
