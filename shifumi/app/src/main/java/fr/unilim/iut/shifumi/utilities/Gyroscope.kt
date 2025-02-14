@@ -9,7 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
-class Gyroscope(context: Context, listener: SensorEventListener?) : SensorEventListener {
+class Gyroscope(context: Context, _listener: SensorEventListener?) : SensorEventListener {
     private var x: Float = 0.0f
     private var y: Float = 0.0f
     private var z: Float = 0.0f
