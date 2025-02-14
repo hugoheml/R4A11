@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Shi-Fu-Mi</string>
+    <string name="title_activity_game">Game</string>
 </resources>

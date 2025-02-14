@@ -13,6 +13,11 @@
         android:theme="@style/Theme.Shifumi"
         tools:targetApi="31">
         <activity
+            android:name=".Game"
+            android:exported="false"
+            android:label="@string/title_activity_game"
+            android:theme="@style/Theme.Shifumi" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
