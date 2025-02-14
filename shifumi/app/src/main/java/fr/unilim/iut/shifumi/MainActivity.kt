@@ -1,5 +1,8 @@
 package fr.unilim.iut.shifumi
 
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -27,11 +30,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import fr.unilim.iut.shifumi.ui.theme.ShifumiTheme
+import fr.unilim.iut.shifumi.utilities.Gyroscope
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), SensorEventListener {
+    var gyroscope: Gyroscope? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        gyroscope = Gyroscope(this, this)
         setContent {
             ShifumiTheme {
                 Surface(
@@ -39,23 +46,37 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize(),
                     color = colorResource(id = R.color.primary)
                 ) {
-                    App_Navigation()
+                    App_Navigation(gyroscope!!)
                 }
             }
         }
+    }
+
+    override fun onSensorChanged(event: SensorEvent?) { }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) { }
+
+    override fun onResume() {
+        super.onResume()
+        gyroscope?.startListening()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        gyroscope?.stopListening()
     }
 }
 
 
 @Composable
-fun App_Navigation() {
+fun App_Navigation(gyroscope: Gyroscope) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "home") {
         composable("home") {
             HomePage(navController = navController)
         }
         composable("game-page") {
-            GamePage()
+            GamePage(navController, gyroscope)
         }
     }
 }
@@ -81,22 +102,6 @@ fun HomePage(navController: NavController) {
         ) {
             Text(text = "Jouer")
         }
-    }
-}
-
-@Composable
-fun GamePage() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "LET'S PLAY",
-            style = MaterialTheme.typography.titleLarge
-        )
     }
 }
 
